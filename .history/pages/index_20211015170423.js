@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Parallax } from "react-parallax";
-import { animated, Spring, to } from "react-spring";
+import { animated, Spring } from "react-spring";
 import VisibilitySensor from "react-visibility-sensor";
 const Hero = () => {
   const [isVisible, setVisible] = useState(false)
-  return <Spring delay={0} to={{ opacity: isVisible ? 1 : 0, top: isVisible ? 0 : 200 }} config={{
+  return <Spring delay={300} to={{ opacity: isVisible ? 1 : 0, top: isVisible ? 0 : 200 }} config={{
     duration: 2000
   }}>
     {({ opacity, top }) => (
@@ -15,13 +15,9 @@ const Hero = () => {
         id="home"
         className="s-home target-section"
       >
-        <VisibilitySensor onChange={(visible) => {
-          if (visible) {
-            setVisible(true)
-          }
-        }}>
+        <VisibilitySensor onChange={setVisible}>
           {({ }) => (
-            <Spring delay={0} to={{ opacity: isVisible ? 1 : 0 }} config={{
+            <Spring delay={1000} to={{ opacity: isVisible ? 1 : 0 }} config={{
               duration: 1000
             }}>
               {({ opacity }) => (
@@ -36,7 +32,7 @@ const Hero = () => {
                     overflow: "hidden",
                     transform: "translate3d(0px, 0px, 0px)",
                     height: "100vh",
-                    width: "100%",
+                    width: "100vw",
                     opacity
                   }}
                 >
@@ -51,45 +47,39 @@ const Hero = () => {
             </Spring>
           )}
         </VisibilitySensor>
+
         <div className="overlay" />
         <div className="shadow-overlay" />
-        <Spring delay={1000} to={{ opacity: isVisible ? 1 : 0, top: isVisible ? 0 : 200 }} config={{
-          duration: 700
-        }}>
-          {
-            (style) => (
-              <div className="home-content">
-                <animated.div style={style} className="row home-content__main">
-                  <h3>Welcome to Glint</h3>
-                  <h1>
-                    We are a creative group <br /> of people who design <br />{" "}
-                    influential brands and <br /> digital experiences.
-                  </h1>
-                  <div className="home-content__buttons">
-                    {" "}
-                    <a href="#contact" className="smoothscroll btn btn--stroke">
-                      {" "}
-                      Start a Project{" "}
-                    </a>{" "}
-                    <a href="#about" className="smoothscroll btn btn--stroke">
-                      {" "}
-                      More About Us{" "}
-                    </a>
-                  </div>
-                </animated.div>
-                <div className="home-content__scroll">
-                  {" "}
-                  <a href="#about" className="scroll-link smoothscroll">
-                    {" "}
-                    <span>Scroll Down</span>{" "}
-                  </a>
-                </div>
-                <div className="home-content__line" />
-              </div>
-            )
-          }
-        </Spring>
-
+        <animated.div style={{
+          top
+        }} className="home-content">
+          <div className="row home-content__main">
+            <h3>Welcome to Glint</h3>
+            <h1>
+              We are a creative group <br /> of people who design <br />{" "}
+              influential brands and <br /> digital experiences.
+            </h1>
+            <div className="home-content__buttons">
+              {" "}
+              <a href="#contact" className="smoothscroll btn btn--stroke">
+                {" "}
+                Start a Project{" "}
+              </a>{" "}
+              <a href="#about" className="smoothscroll btn btn--stroke">
+                {" "}
+                More About Us{" "}
+              </a>
+            </div>
+          </div>
+          <div className="home-content__scroll">
+            {" "}
+            <a href="#about" className="scroll-link smoothscroll">
+              {" "}
+              <span>Scroll Down</span>{" "}
+            </a>
+          </div>
+          <div className="home-content__line" />
+        </animated.div>
         <ul className="home-social">
           <li>
             {" "}
@@ -99,6 +89,7 @@ const Hero = () => {
             </a>
           </li>
           <li>
+            {" "}
             <a href="#0">
               <i className="fa fa-twitter" aria-hidden="true" />
               <span>Twiiter</span>
@@ -129,100 +120,6 @@ const Hero = () => {
       </animated.section>
     )}
   </Spring>
-}
-const About = () => {
-  const [isVisible, setVisible] = useState(false)
-  return (
-    <VisibilitySensor partialVisibility onChange={(visible) => {
-      if (visible) {
-        setVisible(true)
-      }
-    }}>
-      {() => (
-        <section id="about" className="s-about">
-          <Spring delay={0} to={{ opacity: isVisible ? 1 : 0, top: isVisible ? 0 : 200 }} config={{
-            duration: 1000
-          }}>
-            {
-              ({ opacity, top }) => (<animated.div style={{
-                opacity,
-                transform: to([top], (top) => `translateY(${top}px`)
-              }}
-                className="row section-header has-bottom-sep aos-init aos-animate"
-                data-aos="fade-up"
-              >
-                <div className="col-full">
-                  <h3 className="subhead subhead--dark">Hello There</h3>
-                  <h1 className="display-1 display-1--light">We Are Glint</h1>
-                </div>
-              </animated.div>)}
-          </Spring>
-          <Spring delay={700} to={{ opacity: isVisible ? 1 : 0, top: isVisible ? 0 : 200 }} config={{
-            duration: 1000
-          }}>
-            {
-              ({ opacity, top }) => (<animated.div style={{
-                opacity,
-                transform: to([top], (top) => `translateY(${top}px`)
-              }}
-                className="row about-desc aos-init aos-animate"
-                data-aos="fade-up"
-              >
-                <div className="col-full">
-                  <p>
-                    {" "}
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                    enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                    nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                    in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                    nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                    sunt in culpa qui officia deserunt.
-                  </p>
-                </div>
-              </animated.div>
-              )}
-          </Spring>
-
-          <Spring delay={1700} to={{
-            opacity: isVisible ? 1 : 0, top: isVisible ? 0 : 200,
-            x: isVisible ? 127 : 0,
-            y: isVisible ? 1505 : 0,
-            z: isVisible ? 109 : 0,
-            t: isVisible ? 102 : 0,
-          }} config={{
-            duration: 3000
-          }}>
-            {
-              ({ opacity, top, x, y, z, t }) => (<animated.div style={{
-                opacity,
-              }}
-                className="row about-stats stats block-1-4 block-m-1-2 block-mob-full aos-init aos-animate"
-              >
-                <div className="col-block stats__col ">
-                  <animated.div className="stats__count">{x.to(n => n.toFixed())}</animated.div>
-                  <h5>Awards Received</h5>
-                </div>
-                <div className="col-block stats__col">
-                  <animated.div className="stats__count">{y.to(n => n.toFixed())}</animated.div>
-                  <h5>Cups of Coffee</h5>
-                </div>
-                <div className="col-block stats__col">
-                  <animated.div className="stats__count">{z.to(n => n.toFixed())}</animated.div>
-                  <h5>Projects Completed</h5>
-                </div>
-                <div className="col-block stats__col">
-                  <animated.div className="stats__count">{t.to(n => n.toFixed())}</animated.div>
-                  <h5>Happy Clients</h5>
-                </div>
-              </animated.div>)}
-          </Spring>
-          <div className="about__line" />
-        </section>
-      )}
-    </VisibilitySensor>
-
-  )
 }
 export default function Home() {
   return (
@@ -334,7 +231,56 @@ export default function Home() {
           </a>
         </header>
         <Hero />
-        <About />
+        <section id="about" className="s-about">
+          <div
+            className="row section-header has-bottom-sep aos-init aos-animate"
+            data-aos="fade-up"
+          >
+            <div className="col-full">
+              <h3 className="subhead subhead--dark">Hello There</h3>
+              <h1 className="display-1 display-1--light">We Are Glint</h1>
+            </div>
+          </div>
+          <div
+            className="row about-desc aos-init aos-animate"
+            data-aos="fade-up"
+          >
+            <div className="col-full">
+              <p>
+                {" "}
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt.
+              </p>
+            </div>
+          </div>
+          <div
+            className="row about-stats stats block-1-4 block-m-1-2 block-mob-full aos-init aos-animate"
+            data-aos="fade-up"
+          >
+            <div className="col-block stats__col ">
+              <div className="stats__count">127</div>
+              <h5>Awards Received</h5>
+            </div>
+            <div className="col-block stats__col">
+              <div className="stats__count">1505</div>
+              <h5>Cups of Coffee</h5>
+            </div>
+            <div className="col-block stats__col">
+              <div className="stats__count">109</div>
+              <h5>Projects Completed</h5>
+            </div>
+            <div className="col-block stats__col">
+              <div className="stats__count">102</div>
+              <h5>Happy Clients</h5>
+            </div>
+          </div>
+          <div className="about__line" />
+        </section>
         <section id="services" className="s-services">
           <div
             className="row section-header has-bottom-sep aos-init aos-animate"

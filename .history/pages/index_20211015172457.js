@@ -4,7 +4,7 @@ import { animated, Spring, to } from "react-spring";
 import VisibilitySensor from "react-visibility-sensor";
 const Hero = () => {
   const [isVisible, setVisible] = useState(false)
-  return <Spring delay={0} to={{ opacity: isVisible ? 1 : 0, top: isVisible ? 0 : 200 }} config={{
+  return <Spring delay={300} to={{ opacity: isVisible ? 1 : 0, top: isVisible ? 0 : 200 }} config={{
     duration: 2000
   }}>
     {({ opacity, top }) => (
@@ -21,7 +21,7 @@ const Hero = () => {
           }
         }}>
           {({ }) => (
-            <Spring delay={0} to={{ opacity: isVisible ? 1 : 0 }} config={{
+            <Spring delay={1000} to={{ opacity: isVisible ? 1 : 0 }} config={{
               duration: 1000
             }}>
               {({ opacity }) => (
@@ -140,8 +140,8 @@ const About = () => {
     }}>
       {() => (
         <section id="about" className="s-about">
-          <Spring delay={0} to={{ opacity: isVisible ? 1 : 0, top: isVisible ? 0 : 200 }} config={{
-            duration: 1000
+          <Spring delay={200} to={{ opacity: isVisible ? 1 : 0, top: isVisible ? 0 : 200 }} config={{
+            duration: 700
           }}>
             {
               ({ opacity, top }) => (<animated.div style={{
@@ -157,8 +157,8 @@ const About = () => {
                 </div>
               </animated.div>)}
           </Spring>
-          <Spring delay={700} to={{ opacity: isVisible ? 1 : 0, top: isVisible ? 0 : 200 }} config={{
-            duration: 1000
+          <Spring delay={400} to={{ opacity: isVisible ? 1 : 0, top: isVisible ? 0 : 200 }} config={{
+            duration: 700
           }}>
             {
               ({ opacity, top }) => (<animated.div style={{
@@ -184,39 +184,27 @@ const About = () => {
               )}
           </Spring>
 
-          <Spring delay={1700} to={{
-            opacity: isVisible ? 1 : 0, top: isVisible ? 0 : 200,
-            x: isVisible ? 127 : 0,
-            y: isVisible ? 1505 : 0,
-            z: isVisible ? 109 : 0,
-            t: isVisible ? 102 : 0,
-          }} config={{
-            duration: 3000
-          }}>
-            {
-              ({ opacity, top, x, y, z, t }) => (<animated.div style={{
-                opacity,
-              }}
-                className="row about-stats stats block-1-4 block-m-1-2 block-mob-full aos-init aos-animate"
-              >
-                <div className="col-block stats__col ">
-                  <animated.div className="stats__count">{x.to(n => n.toFixed())}</animated.div>
-                  <h5>Awards Received</h5>
-                </div>
-                <div className="col-block stats__col">
-                  <animated.div className="stats__count">{y.to(n => n.toFixed())}</animated.div>
-                  <h5>Cups of Coffee</h5>
-                </div>
-                <div className="col-block stats__col">
-                  <animated.div className="stats__count">{z.to(n => n.toFixed())}</animated.div>
-                  <h5>Projects Completed</h5>
-                </div>
-                <div className="col-block stats__col">
-                  <animated.div className="stats__count">{t.to(n => n.toFixed())}</animated.div>
-                  <h5>Happy Clients</h5>
-                </div>
-              </animated.div>)}
-          </Spring>
+          <div
+            className="row about-stats stats block-1-4 block-m-1-2 block-mob-full aos-init aos-animate"
+            data-aos="fade-up"
+          >
+            <div className="col-block stats__col ">
+              <div className="stats__count">127</div>
+              <h5>Awards Received</h5>
+            </div>
+            <div className="col-block stats__col">
+              <div className="stats__count">1505</div>
+              <h5>Cups of Coffee</h5>
+            </div>
+            <div className="col-block stats__col">
+              <div className="stats__count">109</div>
+              <h5>Projects Completed</h5>
+            </div>
+            <div className="col-block stats__col">
+              <div className="stats__count">102</div>
+              <h5>Happy Clients</h5>
+            </div>
+          </div>
           <div className="about__line" />
         </section>
       )}

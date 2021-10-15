@@ -184,7 +184,7 @@ const About = () => {
               )}
           </Spring>
 
-          <Spring delay={1700} to={{
+          <Spring delay={1000} to={{
             opacity: isVisible ? 1 : 0, top: isVisible ? 0 : 200,
             x: isVisible ? 127 : 0,
             y: isVisible ? 1505 : 0,
@@ -196,6 +196,7 @@ const About = () => {
             {
               ({ opacity, top, x, y, z, t }) => (<animated.div style={{
                 opacity,
+                transform: to([top], (top) => `translateY(${top}px`)
               }}
                 className="row about-stats stats block-1-4 block-m-1-2 block-mob-full aos-init aos-animate"
               >

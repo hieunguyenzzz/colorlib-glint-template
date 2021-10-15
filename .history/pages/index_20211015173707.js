@@ -184,7 +184,7 @@ const About = () => {
               )}
           </Spring>
 
-          <Spring delay={1700} to={{
+          <Spring delay={1000} to={{
             opacity: isVisible ? 1 : 0, top: isVisible ? 0 : 200,
             x: isVisible ? 127 : 0,
             y: isVisible ? 1505 : 0,
